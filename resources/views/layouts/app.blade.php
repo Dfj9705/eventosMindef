@@ -76,6 +76,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer class="container text-center">
+            <div class="row jusrify-content-center">
+                <div class="col-12 lead" style="font-size: .8rem">Comando de Informática y Tecnología 2021 &copy;</div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
