@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Evento;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class EventoController extends Controller
 {
@@ -39,7 +40,29 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+            'nombre' => 'required|min:6',
+            'descripcion' => 'required',
+            'fecha' => 'required|date|after:'.date('Y-m-d H:i'),
+            'imagen' => 'required|image',
+
+        ]);
+
+        $ruta_imagen = $request['imagen']->store('upload-eventos','public');
+            // return public_path("storage/".$ruta_imagen);
+
+        //resize de la img
+        $img = Image::make( public_path("storage/{$ruta_imagen}"))->fit(735,1128);
+        $img->save();
+
+        auth()->user()->eventos()->create([
+            'nombre' => $data['nombre'],
+            'fecha' => $data['fecha'],
+            'descripcion' => $data['descripcion'],
+            'imagen' => $ruta_imagen,
+        ]);
+
+        return redirect()->action('EventoController@index');
     }
 
     /**
