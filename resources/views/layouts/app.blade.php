@@ -34,7 +34,22 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Eventos <span class="caret"></span>
+                            </a>
 
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item {{Request::is('eventos') ? 'active' : ''}}" href="{{route('eventos.index')}}">
+                                    Ver todos
+                                </a>
+                                <a class="dropdown-item {{Request::is('eventos/nuevo') ? 'active' : ''}}" href="{{route('eventos.create')}}">
+                                    Nuevo
+                                </a>
+
+
+                            </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
