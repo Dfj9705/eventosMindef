@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,6 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/eventos', 'EventoController@index' )->name('eventos.index');
+Route::get('/eventos/nuevo', 'EventoController@create' )->name('eventos.create');
