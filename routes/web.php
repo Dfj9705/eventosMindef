@@ -29,3 +29,4 @@ Route::post('/eventos', 'EventoController@store' )->name('eventos.store');
 Route::get('/eventos/{evento}', 'EventoController@show' )->name('eventos.show');
 Route::get('/eventos/{evento}/edit', 'EventoController@edit' )->name('eventos.edit');
 Route::put('/eventos/{evento}', 'EventoController@update' )->name('eventos.update');
+Route::delete('/eventos/{evento}', 'EventoController@destroy' )->name('eventos.destroy');

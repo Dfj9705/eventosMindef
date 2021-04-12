@@ -141,6 +141,8 @@ class EventoController extends Controller
      */
     public function destroy(Evento $evento)
     {
-        //
+        $this->authorize('delete', $evento);
+        $evento->delete();
+        return $evento->json_encode();
     }
 }

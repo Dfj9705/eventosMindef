@@ -42,7 +42,7 @@
                                     </div>
 
                                     <div class="col-12 col-md-3 mb-3 mb-md-0">
-                                        <a class="btn btn-danger btn-block" data-toggle="modal" data-target="#confirmModal">
+                                        <a class="btn btn-danger btn-block" data-toggle="modal" data-target="#confirmModal" onclick="asignarCodigo({{ $evento->id }})">
                                             <i class="fas fa-trash fa-xs mr-2"></i>
                                             Eliminar
                                         </a>
@@ -79,8 +79,8 @@
                 <div class="modal-body">
                     <p class="text-center">
                         ¿Desea eliminar este registro?
-
                     </p>
+                    <input type="hidden" name="codigo" id="codigo">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">No, conservar</button>
@@ -92,9 +92,19 @@
 @endsection
 @section('scripts')
     <script>
-        function borrarRegistro(){
-            $('#confirmModal').modal('hide')
 
+        function asignarCodigo(codigo){
+            document.querySelector('#codigo').value = codigo
+        }
+
+        function borrarRegistro(){
+            let codigo = document.querySelector('#codigo').value
+            $('#confirmModal').modal('hide')
+            const params = {
+                _method : 'delete'
+            }
+            axios.post(`/eventos/${codigo}`, params)
+            .then(response => console.log(response))
 
         }
     </script>
