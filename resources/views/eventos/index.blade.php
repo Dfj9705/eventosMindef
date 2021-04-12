@@ -36,7 +36,7 @@
                                         </div>
 
                                         <div class="col-12 col-md-3 mb-3 mb-md-0">
-                                            <a class="btn btn-warning btn-block">
+                                            <a class="btn btn-warning btn-block" href="{{ route('eventos.edit', [ 'evento' => $evento->id ]) }}">
                                                 <i class="fas fa-edit fa-xs mr-2"></i>
                                                 Editar
                                             </a>

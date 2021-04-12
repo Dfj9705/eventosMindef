@@ -26,3 +26,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/eventos', 'EventoController@index' )->name('eventos.index');
 Route::get('/eventos/nuevo', 'EventoController@create' )->name('eventos.create');
 Route::post('/eventos', 'EventoController@store' )->name('eventos.store');
+Route::get('/eventos/{evento}/edit', 'EventoController@edit' )->name('eventos.edit');
+// Route::put('/eventos/{evento}', 'EventoController@update' )->name('eventos.update');

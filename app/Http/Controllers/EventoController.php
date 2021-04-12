@@ -89,7 +89,8 @@ class EventoController extends Controller
      */
     public function edit(Evento $evento)
     {
-        //
+        $this->authorize('view', $evento);
+        return view('eventos.edit',compact('evento'));
     }
 
     /**
