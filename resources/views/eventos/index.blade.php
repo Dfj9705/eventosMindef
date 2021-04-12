@@ -28,7 +28,7 @@
                             <td>
                                 <div class="row justify-content-center">
                                     <div class="col-12 col-md-3 mb-3 mb-md-0">
-                                        <a class="btn btn-info btn-block">
+                                        <a class="btn btn-info btn-block" href="{{ route('eventos.show', [ 'evento' => $evento->id ]) }}">
                                             <i class="fas fa-file-alt fa-xs mr-2"></i>
                                             Ver
                                         </a>
