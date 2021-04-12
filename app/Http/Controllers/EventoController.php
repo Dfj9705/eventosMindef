@@ -48,7 +48,7 @@ class EventoController extends Controller
             'descripcion' => 'required',
             'fecha' => 'required|date|after:'.date('Y-m-d H:i'),
             'imagen' => 'required|image',
-            'cupo' => 'required|numeric'
+            'cupo' => 'required|numeric|min:0'
 
         ]);
 
@@ -102,7 +102,34 @@ class EventoController extends Controller
      */
     public function update(Request $request, Evento $evento)
     {
-        //
+
+        $this->authorize('update', $evento);
+
+        $data = request()->validate([
+            'nombre' => 'required|min:6',
+            'descripcion' => 'required',
+            'fecha' => 'required|date|after:'.date('Y-m-d H:i'),
+            'cupo' => 'required|numeric|min:0'
+
+        ]);
+
+        $evento->nombre = $data['nombre'];
+        $evento->descripcion = $data['descripcion'];
+        $evento->fecha = $data['fecha'];
+        $evento->cupo = $data['cupo'];
+
+        if(request('imagen')){
+            $ruta_imagen = $request['imagen']->store('upload-eventos','public');
+
+            //resize de la img
+            $img = Image::make( public_path("storage/{$ruta_imagen}"))->fit(735,1128);
+            $img->save();
+
+            $evento->imagen = $ruta_imagen;
+        }
+
+        $evento->save();
+        return redirect()->action('EventoController@index');
     }
 
     /**

@@ -24,8 +24,8 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('/images/emdn.png') }}" width="30" height="35" class="d-inline-block align-top" alt="">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{ asset('/images/emdn.png') }}" width="20" height="25" class="d-inline-block align-top" alt="">
+                    {{ config('app.name', 'MINDEF') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -33,24 +33,19 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    {{-- <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Eventos <span class="caret"></span>
+                                Admin <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item {{Request::is('eventos') ? 'active' : ''}}" href="{{route('eventos.index')}}">
-                                    Ver todos
+                                <a class="dropdown-item {{Request::has('eventos') ? 'active' : ''}}" href="{{route('eventos.index')}}">
+                                    Eventos
                                 </a>
-                                <a class="dropdown-item {{Request::is('eventos/nuevo') ? 'active' : ''}}" href="{{route('eventos.create')}}">
-                                    Nuevo
-                                </a>
-
-
                             </div>
                         </li>
-                    </ul>
+                    </ul> --}}
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -80,6 +75,9 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    <a class="dropdown-item" href="{{route('eventos.index')}}">
+                                        Admin
+                                    </a>
                                 </div>
                             </li>
                         @endguest
@@ -87,11 +85,19 @@
                 </div>
             </div>
         </nav>
+        <div class="container">
+            <div class="row">
+                <div class="py-2 mt-2 col-12">
+                    @yield('botones')
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-        <footer class="container text-center">
+                </div>
+                <main class="py-2 mt-2 col-12">
+                    @yield('content')
+                </main>
+            </div>
+        </div>
+        @yield('modal')
+        <footer class="container text-center mt-5">
             <div class="row jusrify-content-center">
                 <div class="col-12 lead" style="font-size: .8rem">Comando de Informática y Tecnología 2021 &copy;</div>
             </div>
@@ -99,5 +105,7 @@
     </div>
 
     @yield('scripts')
+    <script src="https://kit.fontawesome.com/aa8c0a31ec.js" crossorigin="anonymous"></script>
+
 </body>
 </html>

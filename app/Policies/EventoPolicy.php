@@ -53,7 +53,7 @@ class EventoPolicy
      */
     public function update(User $user, Evento $evento)
     {
-        //
+        return $user->id === $evento->user_id;
     }
 
     /**
