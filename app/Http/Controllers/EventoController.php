@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Evento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
 class EventoController extends Controller
@@ -19,7 +20,9 @@ class EventoController extends Controller
      */
     public function index()
     {
-        return view('eventos.index');
+        $usuario = Auth::user();
+        $eventos = Evento::where('user_id', $usuario->id )->paginate(10);
+        return view('eventos.index',compact('eventos'));
     }
 
     /**
@@ -45,6 +48,7 @@ class EventoController extends Controller
             'descripcion' => 'required',
             'fecha' => 'required|date|after:'.date('Y-m-d H:i'),
             'imagen' => 'required|image',
+            'cupo' => 'required|numeric'
 
         ]);
 
@@ -59,6 +63,7 @@ class EventoController extends Controller
             'nombre' => $data['nombre'],
             'fecha' => $data['fecha'],
             'descripcion' => $data['descripcion'],
+            'cupo' => $data['cupo'],
             'imagen' => $ruta_imagen,
         ]);
 

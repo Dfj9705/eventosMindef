@@ -26,11 +26,21 @@
 
                         </div>
                         <div class="form-group row justify-content-center">
-                            <div class="col-md-12">
+                            <div class="col-md-8">
                                 <label for="fecha" >Fecha del Evento</label>
                                 <input id="fecha" type="datetime-local" class="form-control @error('fecha') is-invalid @enderror" name="fecha" value="{{ old('fecha') }}" required autocomplete="fecha" autofocus>
 
                                 @error('fecha')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-4">
+                                <label for="cupo" >Cupo del Evento</label>
+                                <input id="cupo" type="number" class="form-control @error('cupo') is-invalid @enderror" name="cupo" value="{{ old('cupo') }}" required autocomplete="cupo" autofocus>
+
+                                @error('cupo')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
