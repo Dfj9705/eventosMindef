@@ -22,7 +22,7 @@
                     <p class="text-justify">{{ $evento->descripcion }}</p>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    <button class="btn btn-primary mr-4">Quiero asistir</button>
+                    <button class="btn btn-primary mr-4" href="{{ route('eventos.registro', [ 'evento' => $evento->id ]) }}">Quiero asistir</button>
                     <button class="btn btn-secondary">Ya no quiero asistir</button>
                 </div>
             </div>

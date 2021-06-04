@@ -14,4 +14,9 @@ class Evento extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function registrados(){
+        return $this->hasMany(Registro::class);
+
+    }
 }

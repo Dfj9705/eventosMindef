@@ -104,7 +104,11 @@
                 _method : 'delete'
             }
             axios.post(`/eventos/${codigo}`, params)
-            .then(response => console.log(response))
+            .then(response => {
+                if(response.status == 200 ){
+                    location.reload();
+                }
+            })
 
         }
     </script>
