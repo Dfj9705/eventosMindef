@@ -30,6 +30,7 @@
 
                             <button class="btn btn-danger">Ya no quiero asistir</button>
 
+
                     @else
                     <form action="{{ route('eventos.registro', [ 'evento' => $evento->id ]) }} " method="post">
                         @csrf
@@ -41,9 +42,27 @@
 
                 </div>
             </div>
+            @if (count($registro) > 0)
+            <div class="card">
+                <div class="card-header lead text-center ">
+                    <p class="lead text-uppercase">Tu Código de acceso</p>
+                </div>
+                <div class="card-body d-flex justify-content-center">
+
+                    @php
+                        foreach($registro as $data){
+                            $token = $data['token'];
+                        }
+                    @endphp
+
+                    <div id="code" data-token='{!! $token !!}'></div>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
+
 @endsection
 @section('scripts')
-
+{{-- <script src="/js/app.js"></script> --}}
 @endsection

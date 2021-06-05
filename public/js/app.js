@@ -68298,9 +68298,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Code(props) {
-  console.log(props.token);
+  // console.log(props.token)
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_qr_code__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    value: props.token
+    value: "https://www.google.com.gt?token=".concat(props.token)
   });
 }
 
