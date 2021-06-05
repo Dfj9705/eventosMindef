@@ -93,22 +93,7 @@ class RegistroController extends Controller
      */
     public function update(Request $request, Registro $registro)
     {
-        $usuario = Auth::user();
-        $evento = $request['evento'];
-        $eventos = Registro::where('evento','=', $evento )->get();
 
-        if(is_array($eventos)){
-            $token = 'nofnsodfs';
-        }else{
-            $token = hash('md5', uniqid($evento));
-            auth()->user()->eventosRegistrados()->create([
-                'user' => $usuario->id,
-                'evento' => $evento,
-                'token' => $token,
-            ]);
-        }
-
-        return view('registro.show',compact('token'));
 
     }
 
@@ -120,6 +105,8 @@ class RegistroController extends Controller
      */
     public function destroy(Registro $registro)
     {
-        //
+        $this->authorize('delete', $registro);
+        $registro->delete();
+        return $registro;
     }
 }

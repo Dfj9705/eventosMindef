@@ -4,6 +4,12 @@
 @endsection
 @section('content')
 {{-- {{$registro}} --}}
+@php
+    foreach($registro as $data){
+        $token = $data['token'];
+        $registroId = $data['id'];
+    }
+@endphp
 {{-- {{$evento}} --}}
     <div class="row">
 
@@ -26,17 +32,21 @@
                 <div class="card-footer d-flex justify-content-end">
                     @if (count($registro) > 0)
 
+                    <a class="btn btn-danger btn-block" data-toggle="modal" data-target="#confirmModal" onclick="asignarCodigo({{ $registroId }})">
 
-
-                            <button class="btn btn-danger">Ya no quiero asistir</button>
+                        Ya no asistir
+                    </a>
 
 
                     @else
-                    <form action="{{ route('eventos.registro', [ 'evento' => $evento->id ]) }} " method="post">
-                        @csrf
-                        <input type="hidden" name="evento" value="{{$evento ->id }}">
-                        <button submit class="btn btn-primary btn-block mr-4" >Quiero asistir</button>
-                    </form>
+                    <div class="col-12">
+                        <form action="{{ route('eventos.registro', [ 'evento' => $evento->id ]) }} " method="post">
+                            @csrf
+                            <input type="hidden" name="evento" value="{{$evento ->id }}">
+                            <button submit class="btn btn-primary btn-block mr-4" >Quiero asistir</button>
+                        </form>
+
+                    </div>
 
                     @endif
 
@@ -63,6 +73,51 @@
     </div>
 
 @endsection
+@section('modal')
+    <div class="modal fade modal-xs" id="confirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmación de borrado</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">
+                        ¿Esta seguro que ya no desea asistir a este evento?
+                    </p>
+                    <input type="hidden" name="codigo" id="codigo">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">No, quiero asistir</button>
+                    <button type="button" class="btn btn-secondary" onclick="borrarRegistro()">Si</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
 @section('scripts')
-{{-- <script src="/js/app.js"></script> --}}
+<script>
+        function asignarCodigo(codigo){
+            document.querySelector('#codigo').value = codigo
+        }
+
+        function borrarRegistro(){
+            let codigo = document.querySelector('#codigo').value
+            $('#confirmModal').modal('hide')
+            const params = {
+                _method : 'delete'
+            }
+            axios.post(`/registro/${codigo}`, params)
+            .then(response => {
+                // console.log(response)
+                if(response.status == 200 ){
+                    location.reload();
+                }
+            })
+
+        }
+
+</script>
 @endsection
