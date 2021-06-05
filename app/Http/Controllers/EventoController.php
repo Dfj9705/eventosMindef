@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Evento;
+use App\Registro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
@@ -78,8 +79,11 @@ class EventoController extends Controller
      */
     public function show(Evento $evento)
     {
-
-        return view('eventos.show', compact('evento'));
+        $usuario = Auth::user();
+        $registro =  Registro::where('evento','=', $evento->id )
+                    ->where('user' ,'=' , $usuario->id)
+                    ->get();
+        return view('eventos.show', compact('evento', 'registro'));
     }
 
     /**

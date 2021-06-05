@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Registro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Uuid;
 
 class RegistroController extends Controller
 {
@@ -35,7 +38,28 @@ class RegistroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = Auth::user();
+        $evento = $request['evento'];
+        $token = Registro::where('evento','=', $evento )
+                        ->where('user' ,'=' , $usuario->id)
+                        ->get();
+
+        if(count($token) > 0){
+            foreach ($token as $key) {
+                $token = $key->token;
+            }
+        }else{
+            $token = hash('md5', uniqid($evento));
+
+            auth()->user()->eventosRegistrados()->create([
+                'user' => $usuario->id,
+                'evento' => $evento,
+                'token' => $token,
+                'user_id' => $usuario->id,
+            ]);
+        }
+
+        return view('registro.show',compact('token'));
     }
 
     /**
@@ -46,7 +70,7 @@ class RegistroController extends Controller
      */
     public function show(Registro $registro)
     {
-        //
+        return $registro;
     }
 
     /**
@@ -69,7 +93,23 @@ class RegistroController extends Controller
      */
     public function update(Request $request, Registro $registro)
     {
-        return $request;
+        $usuario = Auth::user();
+        $evento = $request['evento'];
+        $eventos = Registro::where('evento','=', $evento )->get();
+
+        if(is_array($eventos)){
+            $token = 'nofnsodfs';
+        }else{
+            $token = hash('md5', uniqid($evento));
+            auth()->user()->eventosRegistrados()->create([
+                'user' => $usuario->id,
+                'evento' => $evento,
+                'token' => $token,
+            ]);
+        }
+
+        return view('registro.show',compact('token'));
+
     }
 
     /**

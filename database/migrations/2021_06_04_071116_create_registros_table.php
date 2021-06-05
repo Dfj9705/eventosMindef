@@ -15,8 +15,10 @@ class CreateRegistrosTable extends Migration
     {
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user')->references('id')->on('users')->comment('El usuario que se registra al evento');
-            $table->foreignId('evento')->references('id')->on('eventos')->comment('El el evento al que se registra');
+            $table->foreignId('user')->constrained();
+            $table->foreignId('evento')->constrained();
+            $table->string('token');
+            $table->foreignId('user_id')->references('id')->on('users')->comment('El usuario');
             $table->timestamps();
         });
     }

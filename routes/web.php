@@ -34,5 +34,5 @@ Route::delete('/eventos/{evento}', 'EventoController@destroy' )->name('eventos.d
 
 
 
-Route::delete('/eventos/registro/{evento}', 'RegistroController@update' )->name('eventos.registro');
+Route::post('/registro/{evento}', 'RegistroController@store' )->name('eventos.registro');
 

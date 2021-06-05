@@ -3,8 +3,10 @@
     @include('ui.navegacion')
 @endsection
 @section('content')
+{{-- {{$registro}} --}}
 {{-- {{$evento}} --}}
     <div class="row">
+
         <div class="col-md-4 mb-3 mb-md-0">
             <img class="rounded " src="/storage/{{ $evento->imagen }}" width="100%" alt="imagen evento">
         </div>
@@ -22,10 +24,26 @@
                     <p class="text-justify">{{ $evento->descripcion }}</p>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    <button class="btn btn-primary mr-4" href="{{ route('eventos.registro', [ 'evento' => $evento->id ]) }}">Quiero asistir</button>
-                    <button class="btn btn-secondary">Ya no quiero asistir</button>
+                    @if (count($registro) > 0)
+
+
+
+                            <button class="btn btn-danger">Ya no quiero asistir</button>
+
+                    @else
+                    <form action="{{ route('eventos.registro', [ 'evento' => $evento->id ]) }} " method="post">
+                        @csrf
+                        <input type="hidden" name="evento" value="{{$evento ->id }}">
+                        <button submit class="btn btn-primary btn-block mr-4" >Quiero asistir</button>
+                    </form>
+
+                    @endif
+
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+
 @endsection
