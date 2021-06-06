@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     <img src="{{ asset('/images/emdn.png') }}" width="20" height="25" class="d-inline-block align-top" alt="">
                     {{ config('app.name', 'MINDEF') }}
                 </a>
