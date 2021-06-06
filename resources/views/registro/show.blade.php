@@ -5,8 +5,12 @@
 @section('content')
 
     <div class="row justify-content-center">
+        @if (isset($token))
+            <div id="code" data-token='{!! $token !!}'></div>
 
-      <div id="code" data-token='{!! $token !!}'></div>
+        @else
+            <p>{{$error}}</p>
+        @endif
     </div>
 
 

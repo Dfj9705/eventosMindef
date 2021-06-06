@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Registro;
+use App\Evento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -40,26 +41,46 @@ class RegistroController extends Controller
     {
         $usuario = Auth::user();
         $evento = $request['evento'];
+        $asistentes = Registro::where('evento','=', $evento )
+                                ->count();
+
+        $cupoEventos = Evento::select('cupo')
+                        ->where('id','=', $evento)
+                        ->get();
+
+        foreach ($cupoEventos as $cupoEvento){
+            $cupo = $cupoEvento->cupo;
+        }
+
+
         $token = Registro::where('evento','=', $evento )
                         ->where('user' ,'=' , $usuario->id)
                         ->get();
 
-        if(count($token) > 0){
-            foreach ($token as $key) {
-                $token = $key->token;
-            }
-        }else{
-            $token = hash('md5', uniqid($evento));
+        if($asistentes < $cupo){
 
-            auth()->user()->eventosRegistrados()->create([
-                'user' => $usuario->id,
-                'evento' => $evento,
-                'token' => $token,
-                'user_id' => $usuario->id,
-            ]);
+            if(count($token) > 0){
+                foreach ($token as $key) {
+                    $token = $key->token;
+                }
+            }else{
+                $token = hash('md5', uniqid($evento));
+
+                auth()->user()->eventosRegistrados()->create([
+                    'user' => $usuario->id,
+                    'evento' => $evento,
+                    'token' => $token,
+                    'user_id' => $usuario->id,
+                ]);
+            }
+            return view('registro.show',compact('token'));
+        }else{
+            $error = "El cupo esta lleno";
+            return view('registro.show', compact('error'));
         }
 
-        return view('registro.show',compact('token'));
+
+
     }
 
     /**

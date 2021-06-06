@@ -25,7 +25,17 @@
                     <h2>Fecha del evento</h2>
                     <p class="lead">{{ $evento->fecha }}</p>
                     <h3>Cupo</h3>
-                    <p class="lead">{{ $evento->cupo }} personas</p>
+                    @php
+                        $cupoTotal = $evento->cupo - $asistentes
+                    @endphp
+
+                    @if ($cupoTotal > 0 )
+                        <p class="lead">{{ $cupoTotal }} personas </p>
+
+                    @else
+                        <p class="lead">No hay cupo </p>
+
+                    @endif
                     <h3>Descripción</h3>
                     <p class="text-justify">{{ $evento->descripcion }}</p>
                 </div>
@@ -39,14 +49,20 @@
 
 
                     @else
-                    <div class="col-12">
-                        <form action="{{ route('eventos.registro', [ 'evento' => $evento->id ]) }} " method="post">
-                            @csrf
-                            <input type="hidden" name="evento" value="{{$evento ->id }}">
-                            <button submit class="btn btn-primary btn-block mr-4" >Quiero asistir</button>
-                        </form>
+                        @if ($cupoTotal > 0)
+                        <div class="col-12">
+                            <form action="{{ route('eventos.registro', [ 'evento' => $evento->id ]) }} " method="post">
+                                @csrf
+                                <input type="hidden" name="evento" value="{{$evento ->id }}">
+                                <button submit class="btn btn-primary btn-block mr-4" >Quiero asistir</button>
+                            </form>
 
-                    </div>
+                        </div>
+
+                        @else
+                            <p class="text-muted">Ya no hay cupo</p>
+
+                        @endif
 
                     @endif
 

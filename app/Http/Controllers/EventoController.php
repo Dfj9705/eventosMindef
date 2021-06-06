@@ -83,7 +83,10 @@ class EventoController extends Controller
         $registro =  Registro::where('evento','=', $evento->id )
                     ->where('user' ,'=' , $usuario->id)
                     ->get();
-        return view('eventos.show', compact('evento', 'registro'));
+
+        $asistentes = Registro::where('evento','=', $evento->id )
+                    ->count();
+        return view('eventos.show', compact('evento', 'registro','asistentes'));
     }
 
     /**
