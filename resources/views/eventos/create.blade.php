@@ -52,7 +52,7 @@
 
                         <div class="col-md-12">
                             <label for="descripcion" >Descripción del Evento</label>
-                            <textarea id="descripcion" type="descripcion" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion"  required autocomplete="descripcion" autofocus> {{ old('descripcion') }} </textarea>
+                            <textarea id="descripcion" type="descripcion" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion"  required autocomplete="descripcion" autofocus>{{ old('descripcion') }}</textarea>
 
                             @error('descripcion')
                                 <span class="invalid-feedback" role="alert">
