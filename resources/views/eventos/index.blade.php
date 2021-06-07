@@ -105,6 +105,7 @@
             }
             axios.post(`/eventos/${codigo}`, params)
             .then(response => {
+                // console.log(response);
                 if(response.status == 200 ){
                     location.reload();
                 }

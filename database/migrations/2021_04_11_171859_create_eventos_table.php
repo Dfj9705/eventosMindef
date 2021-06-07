@@ -20,7 +20,7 @@ class CreateEventosTable extends Migration
             $table->text('descripcion');
             $table->integer('cupo');
             $table->string('imagen');
-            $table->foreignId('user_id')->references('id')->on('users')->comment('El usuario que crea el evento');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->comment('El usuario que crea el evento');
             $table->timestamps();
         });
     }

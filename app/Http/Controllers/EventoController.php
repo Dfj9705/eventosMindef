@@ -150,6 +150,8 @@ class EventoController extends Controller
     {
         $this->authorize('delete', $evento);
         $evento->delete();
-        return $evento->json_encode();
+        return $evento;
+        // $evento->delete();
+        // return "hola";
     }
 }
