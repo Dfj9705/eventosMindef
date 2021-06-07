@@ -73,12 +73,13 @@ class RegistroController extends Controller
                     'user_id' => $usuario->id,
                 ]);
             }
-            return view('registro.show',compact('token'));
+            // return view('registro.show',compact('token'));
         }else{
             $error = "El cupo esta lleno";
-            return view('registro.show', compact('error'));
+            // return view('registro.show', compact('error'));
         }
 
+        return redirect()->back();
 
 
     }

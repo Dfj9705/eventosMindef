@@ -18,12 +18,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('images/emdn.png') }}" type="image/x-icon">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('/images/emdn.png') }}" width="20" height="25" class="d-inline-block align-top" alt="">
                     {{ config('app.name', 'MINDEF') }}
                 </a>
@@ -74,7 +75,8 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
+        <div class="container-fluid">
+            @yield('banner')
             <div class="row">
                 <div class="py-2 mt-2 col-12">
                     @yield('botones')
