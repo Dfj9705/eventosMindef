@@ -4,8 +4,10 @@ import QRCode from "react-qr-code";
 
 function Code( props) {
     // console.log(props.token)
+    let host = location.host
+
     return (
-        <QRCode value = { `https://www.google.com.gt?token=${props.token}` } />
+        <QRCode value = { `http://${host}/ingreso/${props.token}` } />
     );
 }
 

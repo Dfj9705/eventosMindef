@@ -17,6 +17,7 @@ class UsuarioSeeder extends Seeder
             'name' => 'Daniel',
             'email' => 'correo@correo.com',
             'password' => Hash::make('123456789'),
+            'email_verified_at' => date('Y-m-d H:i:s'),
         ]);
 
 
@@ -25,6 +26,7 @@ class UsuarioSeeder extends Seeder
             'name' => 'Abner',
             'email' => 'correo2@correo.com',
             'password' => Hash::make('123456789'),
+            'email_verified_at' => date('Y-m-d H:i:s'),
         ]);
     }
 }

@@ -11,14 +11,14 @@
     }
 @endphp
 {{-- {{$evento}} --}}
-    <div class="row">
+    <div class="row justify-content-center">
 
-        <div class="col-md-4 mb-3 mb-md-0">
-            <img class="rounded " src="/storage/{{ $evento->imagen }}" width="100%" alt="imagen evento">
+        <div class="col-md-3 mb-3 mb-md-0 ">
+            <img class="rounded" src="/storage/{{ $evento->imagen }}" width="100%" alt="imagen evento">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="card ">
-                <div class="card-header lead text-center bg-dark text-white">
+                <div class="card-header lead text-center ">
                     <h1 class="diplay-1 text-uppercase">{{ $evento->nombre }}</h1>
                 </div>
                 <div class="card-body">

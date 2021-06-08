@@ -68299,8 +68299,9 @@ __webpack_require__.r(__webpack_exports__);
 
 function Code(props) {
   // console.log(props.token)
+  var host = location.host;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_qr_code__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    value: "https://www.google.com.gt?token=".concat(props.token)
+    value: "http://".concat(host, "/ingreso/").concat(props.token)
   });
 }
 
