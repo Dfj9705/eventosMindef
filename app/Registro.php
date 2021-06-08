@@ -20,4 +20,10 @@ class Registro extends Model
         return $this->belongsToMany(Registro::class, 'id');
     }
 
+    public function ingreso()
+    {
+        return $this->hasOne(Ingreso::class);
+
+    }
+
 }
