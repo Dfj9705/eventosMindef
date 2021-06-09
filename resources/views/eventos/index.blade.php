@@ -27,21 +27,28 @@
                             </td>
                             <td>
                                 <div class="row justify-content-center">
-                                    <div class="col-12 col-md-3 mb-3 mb-md-0">
+                                    <div class="col-12 col-lg-3 mb-3 mb-lg-0">
                                         <a class="btn btn-info btn-block" href="{{ route('eventos.show', [ 'evento' => $evento->id ]) }}">
                                             <i class="fas fa-file-alt fa-xs mr-2"></i>
                                             Ver
                                         </a>
                                     </div>
 
-                                    <div class="col-12 col-md-3 mb-3 mb-md-0">
+                                    <div class="col-12 col-lg-3 mb-3 mb-lg-0">
                                         <a class="btn btn-warning btn-block" href="{{ route('eventos.edit', [ 'evento' => $evento->id ]) }}">
                                             <i class="fas fa-edit fa-xs mr-2"></i>
                                             Editar
                                         </a>
                                     </div>
 
-                                    <div class="col-12 col-md-3 mb-3 mb-md-0">
+                                    <div class="col-12 col-lg-3 mb-3 mb-lg-0">
+                                        <a class="btn btn-dark btn-block" href="{{ route('ingreso.estado', [ 'evento' => $evento->id ]) }}">
+                                            <i class="fas fa-list fa-xs mr-2"></i>
+                                            Estado
+                                        </a>
+                                    </div>
+
+                                    <div class="col-12 col-lg-3 mb-3 mb-lg-0">
                                         <a class="btn btn-danger btn-block" data-toggle="modal" data-target="#confirmModal" onclick="asignarCodigo({{ $evento->id }})">
                                             <i class="fas fa-trash fa-xs mr-2"></i>
                                             Eliminar

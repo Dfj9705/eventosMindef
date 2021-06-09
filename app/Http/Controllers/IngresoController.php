@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Evento;
 use App\Ingreso;
 use App\Registro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IngresoController extends Controller
 {
@@ -42,4 +44,26 @@ class IngresoController extends Controller
 
         return view('ingreso.ingreso', compact('mensaje'));
     }
+
+      /**
+     * Display the specified resource.
+     *
+     * @param  \App\Evento  $evento
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Evento $evento)
+    {
+        // $registrados =  Registro::where('evento','=', $evento->id )
+        //             ->get();
+
+        $total = 0;
+        $total = Ingreso::join('registros','ingresos.registro','=','registros.id')
+                        ->where('registros.evento','=', $evento->id )
+                        ->count();
+        $registrados = Registro::where('registros.evento','=', $evento->id)->count();
+
+        return view('ingreso.show', compact('total','evento','registrados'));
+    }
+
+
 }

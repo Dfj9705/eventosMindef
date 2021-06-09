@@ -39,4 +39,5 @@ Route::delete('/registro/{registro}', 'RegistroController@destroy' )->name('regi
 
 
 Route::get('/ingreso/{token}', 'IngresoController@ingreso')->name('ingreso');
+Route::get('/ingreso/estado/{evento}', 'IngresoController@show')->name('ingreso.estado');
 
