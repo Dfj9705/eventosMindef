@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('botones')
+@can('create_eventos')
     @include('ui.navegacion')
+
+@endcan
 @endsection
 @section('content')
 {{-- {{$registro}} --}}

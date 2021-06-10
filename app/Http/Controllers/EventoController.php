@@ -22,8 +22,14 @@ class EventoController extends Controller
     public function index()
     {
         $usuario = Auth::user();
-        $eventos = Evento::where('user_id', $usuario->id )->paginate(10);
-        return view('eventos.index',compact('eventos'));
+        if($usuario->can('create_eventos')){
+
+            $eventos = Evento::where('user_id', $usuario->id )->paginate(10);
+            return view('eventos.index',compact('eventos'));
+        }else{
+            return view('inicio');
+        }
+
     }
 
     /**
@@ -33,7 +39,12 @@ class EventoController extends Controller
      */
     public function create()
     {
-        return view('eventos.create');
+        $usuario = Auth::user();
+        if($usuario->can('create_eventos')){
+            return view('eventos.create');
+        }else{
+            return view('inicio');
+        }
     }
 
     /**
@@ -97,8 +108,14 @@ class EventoController extends Controller
      */
     public function edit(Evento $evento)
     {
-        $this->authorize('view', $evento);
-        return view('eventos.edit',compact('evento'));
+        $usuario = Auth::user();
+        if($usuario->can('create_eventos')){
+            $this->authorize('view', $evento);
+            return view('eventos.edit',compact('evento'));
+
+        }else{
+            return view('inicio');
+        }
     }
 
     /**
@@ -110,34 +127,39 @@ class EventoController extends Controller
      */
     public function update(Request $request, Evento $evento)
     {
+        $usuario = Auth::user();
+            if($usuario->can('create_eventos')){
+                $this->authorize('update', $evento);
 
-        $this->authorize('update', $evento);
+            $data = request()->validate([
+                'nombre' => 'required|min:6',
+                'descripcion' => 'required',
+                'fecha' => 'required|date|after:'.date('Y-m-d H:i'),
+                'cupo' => 'required|numeric|min:0'
 
-        $data = request()->validate([
-            'nombre' => 'required|min:6',
-            'descripcion' => 'required',
-            'fecha' => 'required|date|after:'.date('Y-m-d H:i'),
-            'cupo' => 'required|numeric|min:0'
+            ]);
 
-        ]);
+            $evento->nombre = $data['nombre'];
+            $evento->descripcion = $data['descripcion'];
+            $evento->fecha = $data['fecha'];
+            $evento->cupo = $data['cupo'];
 
-        $evento->nombre = $data['nombre'];
-        $evento->descripcion = $data['descripcion'];
-        $evento->fecha = $data['fecha'];
-        $evento->cupo = $data['cupo'];
+            if(request('imagen')){
+                $ruta_imagen = $request['imagen']->store('upload-eventos','public');
 
-        if(request('imagen')){
-            $ruta_imagen = $request['imagen']->store('upload-eventos','public');
+                //resize de la img
+                $img = Image::make( public_path("storage/{$ruta_imagen}"))->fit(735,1128);
+                $img->save();
 
-            //resize de la img
-            $img = Image::make( public_path("storage/{$ruta_imagen}"))->fit(735,1128);
-            $img->save();
+                $evento->imagen = $ruta_imagen;
+            }
 
-            $evento->imagen = $ruta_imagen;
+            $evento->save();
+            return redirect()->action('EventoController@index');
+        }else{
+            return view('inicio');
         }
 
-        $evento->save();
-        return redirect()->action('EventoController@index');
     }
 
     /**
@@ -148,9 +170,15 @@ class EventoController extends Controller
      */
     public function destroy(Evento $evento)
     {
-        $this->authorize('delete', $evento);
+        $usuario = Auth::user();
+        if($usuario->can('create_eventos')){
+            $this->authorize('delete', $evento);
         $evento->delete();
         return $evento;
+        }else{
+            return view('inicio');
+        }
+
         // $evento->delete();
         // return "hola";
     }

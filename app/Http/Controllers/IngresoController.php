@@ -21,28 +21,35 @@ class IngresoController extends Controller
      */
     public function ingreso($token)
     {
-        $registro = Registro::select('id')->where('token', '=' , $token)->get();
-        $id = $registro[0]->id;
+        $usuario = Auth::user();
 
-        $ingresos = Ingreso::where('registro','=', $id)->get();
+        if($usuario->can('create_eventos')){
 
-        if(!count($ingresos)>0){
-            $ingreso = Ingreso::create([
-                'registro' => $id,
-            ]);
+            $registro = Registro::select('id')->where('token', '=' , $token)->get();
+            $id = $registro[0]->id;
 
-            if($ingreso){
-                $mensaje = "Token validado";
+            $ingresos = Ingreso::where('registro','=', $id)->get();
+
+            if(!count($ingresos)>0){
+                $ingreso = Ingreso::create([
+                    'registro' => $id,
+                ]);
+
+                if($ingreso){
+                    $mensaje = "Token validado";
+                }else{
+                    $mensaje = "Token no ingresado";
+
+                }
+
             }else{
-                $mensaje = "Token no ingresado";
-
+                $mensaje = "Token validado anteriormente";
             }
 
+            return view('ingreso.ingreso', compact('mensaje'));
         }else{
-            $mensaje = "Token validado anteriormente";
+            return view('inicio');
         }
-
-        return view('ingreso.ingreso', compact('mensaje'));
     }
 
       /**
