@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-body">
                     <h2>Fecha del evento</h2>
-                    <p class="lead">{{ $evento->fecha }}</p>
+                    <p class="lead">{{ date('d-m-Y H:i:s', strtotime($evento->fecha))  }}</p>
                     <h3>Cupo</h3>
                     @php
                         $cupoTotal = $evento->cupo - $asistentes

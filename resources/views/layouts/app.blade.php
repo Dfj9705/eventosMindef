@@ -82,14 +82,14 @@
                     @yield('botones')
 
                 </div>
-                <main class="py-2 mt-2 col-12">
+                <main class="py-1 mt-2 col-12">
                     @yield('content')
                 </main>
             </div>
         </div>
         @yield('modal')
-        <footer class="container text-center mt-5">
-            <div class="row jusrify-content-center">
+        <footer class="container text-center mt-0">
+            <div class="row justify-content-center">
                 <div class="col-12 lead" style="font-size: .8rem">Comando de Informática y Tecnología 2021 &copy;</div>
             </div>
         </footer>

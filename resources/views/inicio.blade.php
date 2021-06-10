@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('banner')
-<div class="row mb-5">
+<div class="row mb-2">
     <div class="col-12">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-              <div class="carousel-item active">
+              <div class="carousel-item active " style="max-height: 60vh">
                 <img class="d-block w-100" src="{{ asset('/images/banner3.jpg') }}" alt="First slide">
               </div>
-              <div class="carousel-item">
+              <div class="carousel-item" style="max-height: 60vh">
                 <img class="d-block w-100" src="{{  asset('/images/banner2.jpg')}}" alt="Second slide">
               </div>
             </div>
