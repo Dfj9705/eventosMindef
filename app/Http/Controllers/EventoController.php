@@ -22,7 +22,7 @@ class EventoController extends Controller
     public function index()
     {
         $usuario = Auth::user();
-        if($usuario->can('create_eventos')){
+        if($usuario->hasRole('Administrador')){
 
             $eventos = Evento::where('user_id', $usuario->id )->paginate(10);
             return view('eventos.index',compact('eventos'));
@@ -40,7 +40,7 @@ class EventoController extends Controller
     public function create()
     {
         $usuario = Auth::user();
-        if($usuario->can('create_eventos')){
+        if($usuario->hasRole('Administrador')){
             return view('eventos.create');
         }else{
             return view('inicio');
@@ -109,7 +109,7 @@ class EventoController extends Controller
     public function edit(Evento $evento)
     {
         $usuario = Auth::user();
-        if($usuario->can('create_eventos')){
+        if($usuario->hasRole('Administrador')){
             $this->authorize('view', $evento);
             return view('eventos.edit',compact('evento'));
 
@@ -128,7 +128,7 @@ class EventoController extends Controller
     public function update(Request $request, Evento $evento)
     {
         $usuario = Auth::user();
-            if($usuario->can('create_eventos')){
+            if($usuario->hasRole('Administrador')){
                 $this->authorize('update', $evento);
 
             $data = request()->validate([
@@ -171,7 +171,7 @@ class EventoController extends Controller
     public function destroy(Evento $evento)
     {
         $usuario = Auth::user();
-        if($usuario->can('create_eventos')){
+        if($usuario->hasRole('Administrador')){
             $this->authorize('delete', $evento);
         $evento->delete();
         return $evento;

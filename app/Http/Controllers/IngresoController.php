@@ -23,7 +23,7 @@ class IngresoController extends Controller
     {
         $usuario = Auth::user();
 
-        if($usuario->can('create_eventos')){
+        if($usuario->hasRole('Administrador')){
 
             $registro = Registro::select('id')->where('token', '=' , $token)->get();
             $id = $registro[0]->id;

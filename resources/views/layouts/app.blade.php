@@ -55,12 +55,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @can('create_eventos')
+                                    @if (Auth::user()->hasRole('Administrador'))
                                         <a class="dropdown-item" href="{{route('eventos.index')}}">
                                             Admin
                                         </a>
 
-                                    @endcan
+                                    @endif
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
