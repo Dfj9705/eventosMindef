@@ -4,7 +4,8 @@
 <div class="row justify-content-center">
     <div class="col-12">
         <div class="alert alert-info text-center"  role="alert">
-            {{$mensaje}}
+            <p>{{$mensaje}}</p>
+            <p class="lead text-uppercase">Bienvenido: {{ $usuario->name }}</p>
         </div>
     </div>
     <div class="col-lg-4">

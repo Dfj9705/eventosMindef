@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Evento;
 use App\Ingreso;
 use App\Registro;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,10 +26,12 @@ class IngresoController extends Controller
 
         if($usuario->hasRole('Administrador')){
 
-            $registro = Registro::select('id')->where('token', '=' , $token)->get();
+            $registro = Registro::select('id', 'user')->where('token', '=' , $token)->get();
             $id = $registro[0]->id;
 
             $ingresos = Ingreso::where('registro','=', $id)->get();
+
+            $usuario = User::find($registro[0] -> user);
 
             if(!count($ingresos)>0){
                 $ingreso = Ingreso::create([
@@ -46,7 +49,7 @@ class IngresoController extends Controller
                 $mensaje = "Token validado anteriormente";
             }
 
-            return view('ingreso.ingreso', compact('mensaje'));
+            return view('ingreso.ingreso', compact('mensaje', 'usuario'));
         }else{
             return view('inicio');
         }
