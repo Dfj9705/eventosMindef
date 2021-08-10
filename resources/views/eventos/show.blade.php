@@ -42,6 +42,7 @@
                     <h3>Descripción</h3>
                     <p class="text-justify">{{ $evento->descripcion }}</p>
                 </div>
+                @if( $evento->fecha >= Carbon\Carbon::now() )
                 <div class="card-footer d-flex justify-content-end">
                     @if (count($registro) > 0)
 
@@ -68,8 +69,9 @@
                         @endif
 
                     @endif
-
+                    
                 </div>
+                @endif
             </div>
             @if (count($registro) > 0)
             <div class="card">
