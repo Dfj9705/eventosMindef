@@ -16,7 +16,7 @@ class CreateRegistrosTable extends Migration
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user')->on('users')->onDelete('cascade');
-            $table->foreignId('evento')->on('eventos')->onDelete('cascade');
+            $table->foreignId('evento_id')->on('eventos')->onDelete('cascade');
             $table->string('token');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->comment('El usuario');
             $table->timestamps();

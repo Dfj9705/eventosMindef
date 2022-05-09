@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Registro extends Model
 {
     protected $fillable = [
-        'user', 'evento', 'token',
+        'user', 'evento_id', 'token',
     ];
 
     public function usuario()

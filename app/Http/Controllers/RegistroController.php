@@ -45,7 +45,7 @@ class RegistroController extends Controller
     {
         $usuario = Auth::user();
         $evento = $request['evento'];
-        $asistentes = Registro::where('evento','=', $evento )
+        $asistentes = Registro::where('evento_id','=', $evento )
                                 ->count();
 
         $cupoEventos = Evento::select('cupo')
@@ -57,7 +57,7 @@ class RegistroController extends Controller
         }
 
 
-        $token = Registro::where('evento','=', $evento )
+        $token = Registro::where('evento_id','=', $evento )
                         ->where('user' ,'=' , $usuario->id)
                         ->get();
 
@@ -72,7 +72,7 @@ class RegistroController extends Controller
 
                 auth()->user()->eventosRegistrados()->create([
                     'user' => $usuario->id,
-                    'evento' => $evento,
+                    'evento_id' => $evento,
                     'token' => $token,
                     'user_id' => $usuario->id,
                 ]);

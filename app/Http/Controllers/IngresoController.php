@@ -68,9 +68,9 @@ class IngresoController extends Controller
 
         $total = 0;
         $total = Ingreso::join('registros','ingresos.registro','=','registros.id')
-                        ->where('registros.evento','=', $evento->id )
+                        ->where('registros.evento_id','=', $evento->id )
                         ->count();
-        $registrados = Registro::where('registros.evento','=', $evento->id)->count();
+        $registrados = Registro::where('registros.evento_id','=', $evento->id)->count();
 
         return view('ingreso.show', compact('total','evento','registrados'));
     }

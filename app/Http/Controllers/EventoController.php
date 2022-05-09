@@ -91,11 +91,11 @@ class EventoController extends Controller
     public function show(Evento $evento)
     {
         $usuario = Auth::user();
-        $registro =  Registro::where('evento','=', $evento->id )
+        $registro =  Registro::where('evento_id','=', $evento->id )
                     ->where('user' ,'=' , $usuario->id)
                     ->get();
 
-        $asistentes = Registro::where('evento','=', $evento->id )
+        $asistentes = Registro::where('evento_id','=', $evento->id )
                     ->count();
         return view('eventos.show', compact('evento', 'registro','asistentes'));
     }
