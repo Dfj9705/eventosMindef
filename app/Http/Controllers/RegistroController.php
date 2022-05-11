@@ -20,9 +20,11 @@ class RegistroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $evento = Evento::find($id);
+        $registrados = $evento->registrados;
+        return view('registro.index', compact('registrados', 'evento'));
     }
 
     /**
@@ -58,7 +60,7 @@ class RegistroController extends Controller
 
 
         $token = Registro::where('evento_id','=', $evento )
-                        ->where('user' ,'=' , $usuario->id)
+                        ->where('user_id' ,'=' , $usuario->id)
                         ->get();
 
         if($asistentes < $cupo){
@@ -71,10 +73,9 @@ class RegistroController extends Controller
                 $token = hash('md5', uniqid($evento));
 
                 auth()->user()->eventosRegistrados()->create([
-                    'user' => $usuario->id,
+                    'user_id' => $usuario->id,
                     'evento_id' => $evento,
                     'token' => $token,
-                    'user_id' => $usuario->id,
                 ]);
             }
             // return view('registro.show',compact('token'));

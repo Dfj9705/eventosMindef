@@ -26,12 +26,12 @@ class IngresoController extends Controller
 
         if($usuario->hasRole('Administrador')){
 
-            $registro = Registro::select('id', 'user')->where('token', '=' , $token)->get();
+            $registro = Registro::select('id', 'user_id')->where('token', '=' , $token)->get();
             $id = $registro[0]->id;
 
             $ingresos = Ingreso::where('registro','=', $id)->get();
 
-            $usuario = User::find($registro[0] -> user);
+            $usuario = User::find($registro[0] -> user_id);
 
             if(!count($ingresos)>0){
                 $ingreso = Ingreso::create([

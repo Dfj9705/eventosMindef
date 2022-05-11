@@ -23,7 +23,7 @@
             <div class="card ">
                 <div class="card-header lead text-center ">
                     <h1 class="diplay-1 text-uppercase">{{ $evento->nombre }}</h1>
-                    <a href="{{ url()->previous() }}" class="btn btn-info btn-block">Volver</a>
+                    <a href="{{ Auth::user()->hasRole('Administrador') ? route('eventos.index') :route('home') }}" class="btn btn-info btn-block">Volver</a>
                 </div>
                 <div class="card-body">
                     <h2>Fecha del evento</h2>

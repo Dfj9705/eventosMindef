@@ -17,6 +17,7 @@ class UsuarioSeeder extends Seeder
         $user = User::create([
             'name' => 'ADMIN',
             'email' => 'admin@admin.com',
+            'dpi' => '123456789',
             'password' => Hash::make('admin123'),
             'email_verified_at' => date('Y-m-d H:i:s'),
         ]);

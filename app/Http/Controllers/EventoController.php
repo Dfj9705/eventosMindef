@@ -92,7 +92,7 @@ class EventoController extends Controller
     {
         $usuario = Auth::user();
         $registro =  Registro::where('evento_id','=', $evento->id )
-                    ->where('user' ,'=' , $usuario->id)
+                    ->where('user_id' ,'=' , $usuario->id)
                     ->get();
 
         $asistentes = Registro::where('evento_id','=', $evento->id )
