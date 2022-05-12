@@ -2,7 +2,7 @@
 @section('content')
 <div class="row justify-content-end mb-3">
    <div class="col-lg-2">
-      <button class="btn btn-info btn-block">Imprimir</button>
+      <a href="{{ route('registro.imprimir', [ 'evento' => $evento->id ]) }}" class="btn btn-info btn-block">Imprimir</a>
    </div>
    <div class="col-lg-2">
       <a href="{{ url()->previous()}}" class="btn btn-secondary btn-block">Volver</a>

@@ -26,6 +26,23 @@ class RegistroController extends Controller
         $registrados = $evento->registrados;
         return view('registro.index', compact('registrados', 'evento'));
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function imprimir($id)
+    {
+        $evento = Evento::find($id);
+        $registrados = $evento->registrados;
+        // // return $registrados;
+        // $data = [
+        //     'titulo' => 'Styde.net'
+        // ];
+
+        $pdf = \PDF::loadView('pdf.listado', compact('registrados', 'evento'));
+        return $pdf->stream('archivo.pdf');
+    }
 
     /**
      * Show the form for creating a new resource.
