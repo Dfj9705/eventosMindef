@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
+            <p class="lead text-muted text-center">Para ver conciertos necesita tener una cuenta</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
             <div class="card shadow">
                 <div class="card-header lead text-center bg-dark text-white uppercase">{{ __('Login') }}</div>
 
