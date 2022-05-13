@@ -94,7 +94,7 @@
         @yield('modal')
         <footer class="container text-center mt-0">
             <div class="row justify-content-center">
-                <div class="col-12 lead" style="font-size: .8rem">Comando de Informática y Tecnología 2021 &copy;</div>
+                <div class="col-12 lead" style="font-size: .8rem">Comando de Informática y Tecnología {{ date('Y') }} &copy;</div>
             </div>
         </footer>
     </div>
