@@ -35,13 +35,29 @@ class RegistroController extends Controller
     {
         $evento = Evento::find($id);
         $registrados = $evento->registrados;
-        // // return $registrados;
-        // $data = [
-        //     'titulo' => 'Styde.net'
-        // ];
-
         $pdf = \PDF::loadView('pdf.listado', compact('registrados', 'evento'));
         return $pdf->stream('archivo.pdf');
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listado($id)
+    {
+        // $evento = Evento::find($id);
+        // $registrados = $evento->registrados;
+
+        $registrados = DB::table('registros') 
+                            ->join('users','registros.user_id','users.id')
+                            ->select('users.name','users.email','users.dpi','users.entidad')
+                            ->where('registros.evento_id','=',$id)
+                        
+                            ->get();
+
+        return json_encode($registrados);
+
+        // return $registrados;
     }
 
     /**

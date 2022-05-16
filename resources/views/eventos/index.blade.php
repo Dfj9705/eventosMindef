@@ -51,7 +51,7 @@
                                     </div>
 
                                     <div class="col-12 col-lg-2 mb-3 mb-lg-0">
-                                        <a class="btn btn-primary btn-block" href="{{ route('registro.listado', [ 'evento' => $evento->id ]) }}">
+                                        <a class="btn btn-primary btn-block" href="{{ route('registro.index', [ 'evento' => $evento->id ]) }}">
                                             <i class="fas fa-list fa-xs mr-2"></i>
                                             Listado
                                         </a>

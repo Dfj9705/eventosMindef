@@ -38,7 +38,7 @@
                                 @enderror
                             </div>
                         </div>
-
+                        
                         <div class="form-group row justify-content-center">
                             
                             <div class="col-md-12">
@@ -46,6 +46,19 @@
                                 <input id="dpi" type="dpi" class="form-control @error('dpi') is-invalid @enderror" name="dpi" value="{{ old('dpi') }}"  autocomplete="dpi">
 
                                 @error('dpi')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            
+                            <div class="col-md-12">
+                                <label for="entidad" class="">Entidad/dependencia a la que pertenece</label>
+                                <input id="entidad" type="entidad" class="form-control @error('entidad') is-invalid @enderror" name="entidad" value="{{ old('entidad') }}"  autocomplete="entidad">
+
+                                @error('entidad')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

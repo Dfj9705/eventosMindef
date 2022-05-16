@@ -6,6 +6,7 @@
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
         <style>
+            *{margin:0;padding:0}
             .header,
             .footer {
                 width: 100%;
@@ -46,6 +47,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Nombre</th>
+                            <th>Entidad</th>
                             <th>DPI</th>
                             <th>Correo Electrónico</th>
                         </tr>
@@ -55,6 +57,7 @@
                             <tr>
                                 <td>{{$key + 1}}</td>
                                 <td>{{$registrado->usuario->name}}</td>
+                                <td>{{$registrado->usuario->entidad}}</td>
                                 <td>{{$registrado->usuario->dpi}}</td>
                                 <td>{{$registrado->usuario->email}}</td>
                     
