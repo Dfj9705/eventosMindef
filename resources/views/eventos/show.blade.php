@@ -15,7 +15,6 @@
 @endphp
 {{-- {{$evento}} --}}
     <div class="row justify-content-center">
-
         <div class="col-md-3 mb-3 mb-md-0 ">
             <img class="rounded" src="/storage/{{ $evento->imagen }}" width="100%" alt="imagen evento">
         </div>
@@ -56,6 +55,7 @@
                     @else
                         @if ($cupoTotal > 0)
                         <div class="col-12">
+
                             <form action="{{ route('eventos.registro', [ 'evento' => $evento->id ]) }} " method="post">
                                 @csrf
                                 <input type="hidden" name="evento" value="{{$evento ->id }}">
@@ -89,6 +89,9 @@
 
                     <div id="code" data-token='{!! $token !!}'></div>
                 </div>
+                <div class="card-footer text-center">
+                    <button id="imprimir" class="btn btn-info">Imprimir</button>
+                </div>
             </div>
             @endif
         </div>
@@ -121,8 +124,40 @@
 @endsection
 @section('scripts')
 <script>
+    const buttonImprimir = document.querySelector('#imprimir')
         function asignarCodigo(codigo){
             document.querySelector('#codigo').value = codigo
+        }
+        function imprimirElemento(elemento) {
+            var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
+            var dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
+
+            var w = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+            var h = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+            var left = ((w / 2) - (w / 2)) + dualScreenLeft;
+            var top = ((h / 2) - (h / 2)) + dualScreenTop;
+            let ventana = window.open('', 'PRINT', 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+            ventana.document.write('<html><head><title>' + document.title + '</title></head>');
+            ventana.document.write('<body >');
+            ventana.document.write('<h1>Tu código para ingresar a {{ $evento->nombre }} </h1>');
+            ventana.document.write(elemento.innerHTML);
+            @if(count($registro) > 0)
+                ventana.document.write('<p>Nombre: {{ Auth::user()->name }}</p>');
+                ventana.document.write('<p>DPI: {{ Auth::user()->dpi }}</p>');
+                ventana.document.write('<p>Entidad: {{ Auth::user()->entidad }}</p>');
+                ventana.document.write('<p>Correo electrónico: {{ Auth::user()->email }}</p>');
+
+            @endif
+            ventana.document.write('</body>');
+            ventana.document.write('</html>');
+            ventana.document.close();
+            ventana.focus();
+        
+            setTimeout(() => {
+                    ventana.print();
+                    ventana.close();
+            }, 500);
         }
 
         function borrarRegistro(){
@@ -141,5 +176,10 @@
 
         }
 
+    buttonImprimir.addEventListener('click', ()=>{
+        const elemento = document.querySelector('#code')
+
+        imprimirElemento(elemento)
+    })
 </script>
 @endsection

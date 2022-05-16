@@ -50,7 +50,7 @@ class RegistroController extends Controller
 
         $registrados = DB::table('registros') 
                             ->join('users','registros.user_id','users.id')
-                            ->select('users.name','users.email','users.dpi','users.entidad')
+                            ->select('users.name','users.email','users.dpi', 'users.entidad')
                             ->where('registros.evento_id','=',$id)
                         
                             ->get();
