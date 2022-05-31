@@ -7,7 +7,7 @@ function Code( props) {
     let host = location.host
 
     return (
-        <QRCode value = { `https://${host}/ingreso/${props.token}` } />
+        <QRCode value = { `https://concierto.mindef.mil.gt/ingreso/${props.token}` } />
     );
 }
 
