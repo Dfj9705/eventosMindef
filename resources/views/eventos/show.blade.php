@@ -26,7 +26,7 @@
                 </div>
                 <div class="card-body">
                     <h2>Fecha del evento</h2>
-                    <p class="lead">{{ date('d-m-Y H:i:s', strtotime($evento->fecha))  }}</p>
+                    <p class="lead">{{ \Carbon\Carbon::parse($evento->fecha)->diffForHumans() }}  <small>({{ date("d-m-Y H:i", strtotime($evento->fecha)) }})</small></p>
                     <h3>Cupo</h3>
                     @php
                         $cupoTotal = $evento->cupo - $asistentes
