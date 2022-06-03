@@ -138,15 +138,24 @@
             var left = ((w / 2) - (w / 2)) + dualScreenLeft;
             var top = ((h / 2) - (h / 2)) + dualScreenTop;
             let ventana = window.open('', 'PRINT', 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-            ventana.document.write('<html><head><title>' + document.title + '</title></head>');
-            ventana.document.write('<body >');
+            ventana.document.write('<html><head><title>' + document.title + '</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"></head>');
+            ventana.document.write("<body class='container text-center'>");
+            ventana.document.write("<div class='row justify-content-center '>");
+            ventana.document.write("<div class='col-12'>");
             ventana.document.write('<h1>Tu código para ingresar a {{ $evento->nombre }} </h1>');
+            ventana.document.write("</div>");
+            ventana.document.write("</div>");
+
+            ventana.document.write("<div class='row justify-content-center '>");
+            ventana.document.write("<div class='col-6 py-3 border rounded'>");
             ventana.document.write(elemento.innerHTML);
+            ventana.document.write("</div>");
+            ventana.document.write("</div>");
             @if(count($registro) > 0)
-                ventana.document.write('<p>Nombre: {{ Auth::user()->name }}</p>');
-                ventana.document.write('<p>DPI: {{ Auth::user()->dpi }}</p>');
-                ventana.document.write('<p>Entidad: {{ Auth::user()->entidad }}</p>');
-                ventana.document.write('<p>Correo electrónico: {{ Auth::user()->email }}</p>');
+                ventana.document.write("<p class='lead'>Nombre: {{ Auth::user()->name }}</p>");
+                ventana.document.write("<p class='lead'>DPI: {{ Auth::user()->dpi }}</p>");
+                ventana.document.write("<p class='lead'>Entidad: {{ Auth::user()->entidad }}</p>");
+                ventana.document.write("<p class='lead'>Correo electrónico: {{ Auth::user()->email }}</p>");
 
             @endif
             ventana.document.write('</body>');
