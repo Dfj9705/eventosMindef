@@ -42,7 +42,7 @@
                         <div class="form-group row justify-content-center">
                             
                             <div class="col-md-12">
-                                <label for="dpi" class="">DPI</label>
+                                <label for="dpi" class="">NO. de DPI o Pasaporte</label>
                                 <input id="dpi" type="dpi" class="form-control @error('dpi') is-invalid @enderror" name="dpi" value="{{ old('dpi') }}"  autocomplete="dpi">
 
                                 @error('dpi')
