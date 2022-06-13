@@ -16,7 +16,7 @@
                     <img class="card-img-top" style="width: 100%" src="/storage/{{ $evento->imagen }}" alt="Card image cap">
 
                     <div class="card-body">
-                        <h5 class="card-title">{{ Str::limit($evento->nombre, 20, '...') }}</h5>
+                        <h5 class="card-title">{{ Str::limit($evento->nombre, 45, '...') }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ \Carbon\Carbon::parse($evento->fecha)->diffForHumans() }}  <small>({{ date("d-m-Y H:i", strtotime($evento->fecha)) }})</small></h6>
                         <p class="card-text">{{ Str::limit($evento->descripcion, 35, '...') }}</p>
                         <a href="{{ route('eventos.show', [ 'evento' => $evento->id ]) }}" class="card-link btn btn-success btn-block">Ver evento</a>
