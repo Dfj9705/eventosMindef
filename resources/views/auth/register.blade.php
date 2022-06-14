@@ -30,6 +30,7 @@
                             <div class="col-md-12">
                                 <label for="email" class="">{{ __('E-Mail Address') }}</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
+                                <small> (Debe ingresar un correo válido Ej. usuario@gmail.com, usuario@outlook.es)</small>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

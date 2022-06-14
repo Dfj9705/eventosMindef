@@ -59,6 +59,7 @@
                             <form action="{{ route('eventos.registro', [ 'evento' => $evento->id ]) }} " method="post">
                                 @csrf
                                 <input type="hidden" name="evento" value="{{$evento ->id }}">
+                                <p class="text-center lead text-uppercase text-danger font-weight-bold">Este registro es completamente individual</p>
                                 <button submit class="btn btn-primary btn-block mr-4" >Quiero asistir</button>
                             </form>
 
@@ -78,6 +79,8 @@
             <div class="card">
                 <div class="card-header lead text-center ">
                     <p class="lead text-uppercase">Tu Código de acceso</p>
+                    <p class="text-uppercase text-danger font-weight-bold">Este código es personal e intransferible</p>
+                    <small class="text-danger">Válido para una (01) persona</small>
                 </div>
                 <div class="card-body d-flex justify-content-center">
 
