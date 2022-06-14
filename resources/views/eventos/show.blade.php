@@ -143,9 +143,10 @@
             let ventana = window.open('', 'PRINT', 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
             ventana.document.write('<html><head><title>' + document.title + '</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"></head>');
             ventana.document.write("<body class='container text-center'>");
-            ventana.document.write("<div class='row justify-content-center '>");
+            ventana.document.write("<div class='row justify-content-center mb-3'>");
             ventana.document.write("<div class='col-12'>");
             ventana.document.write('<h1>Tu código para ingresar a {{ $evento->nombre }} </h1>');
+            ventana.document.write(" <p class='text-uppercase text-danger font-weight-bold'>Este código es personal e intransferible</p><small class='text-danger '>Válido para una (01) persona</small>");
             ventana.document.write("</div>");
             ventana.document.write("</div>");
 
