@@ -25,7 +25,7 @@
         </style>
     </head>
     <body>
-        <header class="container text-center">
+        <header class="container-fluid text-center">
             <div class="row justify-content-center">
                 <div class="col-12">
                     <p class="lead text-muted">Ministerio de la Defensa Nacional</p>
@@ -33,16 +33,16 @@
               
             </div>
         </header>
-        <div class="container text-center">
+        <div class="container-fluid text-center">
 
             <div class="row">
                 <div class="col-12">
                     <h4>Personas registradas en {{ $evento->nombre }}</h4>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <table class="table table-sm table-bordered w-100">
+            <div class="row justify-content-center">
+                <div class="col-11 table-responsive ">
+                    <table class="table table-sm table-bordered w-100 table-condensed">
                         <thead class="thead">
                         <tr>
                             <th>No.</th>

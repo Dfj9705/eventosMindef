@@ -35,7 +35,7 @@ class RegistroController extends Controller
     {
         $evento = Evento::find($id);
         $registrados = $evento->registrados;
-        $pdf = \PDF::loadView('pdf.listado', compact('registrados', 'evento'));
+        $pdf = \PDF::loadView('pdf.listado', compact('registrados', 'evento'))->setPaper('letter', 'landscape');
         return $pdf->stream('archivo.pdf');
     }
     /**
