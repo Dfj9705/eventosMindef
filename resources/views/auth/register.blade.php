@@ -72,7 +72,7 @@
                             <div class="col-md-12">
                                 <label for="password" class="">{{ __('Password') }}</label>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
-
+                                <small> (La contraseña debe tener al menos 8 letras mayúsculas, minúsculas, números y carácteres especiales)</small>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

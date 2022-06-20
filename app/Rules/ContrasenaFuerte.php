@@ -41,6 +41,6 @@ class ContrasenaFuerte implements Rule
      */
     public function message()
     {
-        return 'La :attribute debe tener al menos 8 caracteres y debe incluir al menos una letra mayúscula, un número y un carácter especial.';
+        return 'La :attribute debe tener al menos 8 caracteres y debe incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.';
     }
 }
