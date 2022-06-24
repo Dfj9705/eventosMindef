@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Personas</title>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+        {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"> --}}
         <style>
             *{margin:0;padding:0}
             .header,
@@ -21,6 +21,13 @@
             }
             .pagenum:before {
                 content: counter(page);
+            }
+            td,th {
+                border: 2px solid black;
+                padding: .5rem;
+            }
+            .container-fluid{
+                padding: 2.5rem;
             }
         </style>
     </head>
