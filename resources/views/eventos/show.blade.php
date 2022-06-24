@@ -189,6 +189,7 @@
 
         }
 
+        // alert("hola")
     buttonImprimir.addEventListener('click', ()=>{
         const elemento = document.querySelector('#code')
 

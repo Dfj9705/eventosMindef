@@ -35,7 +35,7 @@ Route::delete('/eventos/{evento}', 'EventoController@destroy' )->name('eventos.d
 
 
 Route::get('/registro/{evento}', 'RegistroController@index' )->name('registro.index');
-Route::get('/registro/{evento}/imprimir', 'RegistroController@imprimir' )->name('registro.imprimir')->middleware('doNotCacheResponse');
+Route::get('/registro/{evento}/imprimir', 'RegistroController@imprimir' )->name('registro.imprimir');
 Route::get('/registro/{evento}/listado', 'RegistroController@listado' )->name('registro.listado');
 Route::post('/registro/{evento}', 'RegistroController@store' )->name('eventos.registro');
 Route::delete('/registro/{registro}', 'RegistroController@destroy' )->name('registro.destroy');
