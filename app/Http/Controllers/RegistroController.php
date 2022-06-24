@@ -34,9 +34,15 @@ class RegistroController extends Controller
     public function imprimir($id)
     {
         $evento = Evento::find($id);
-        $registrados = $evento->registrados;
+        // $registrados = $evento->registrados;
+        $registrados = DB::table('registros') 
+                            ->join('users','registros.user_id','users.id')
+                            ->select('users.name','users.dpi', 'users.entidad')
+                            ->where('registros.evento_id','=',$id)
+                        
+                            ->get();
         $pdf = \PDF::loadView('pdf.listado', compact('registrados', 'evento'))->setPaper('letter', 'landscape');
-        return $pdf->stream('archivo.pdf');
+        return $pdf->download('archivo.pdf');
     }
     /**
      * Display a listing of the resource.

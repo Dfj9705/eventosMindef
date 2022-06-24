@@ -49,17 +49,15 @@
                             <th>Nombre</th>
                             <th>Entidad</th>
                             <th>DPI</th>
-                            <th>Correo Electrónico</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($registrados as $key => $registrado)
                             <tr>
                                 <td>{{$key + 1}}</td>
-                                <td>{{$registrado->usuario->name}}</td>
-                                <td>{{$registrado->usuario->entidad}}</td>
-                                <td>{{$registrado->usuario->dpi}}</td>
-                                <td>{{$registrado->usuario->email}}</td>
+                                <td>{{$registrado->name}}</td>
+                                <td>{{$registrado->entidad}}</td>
+                                <td>{{$registrado->dpi}}</td>
                     
                             </tr>
                         
