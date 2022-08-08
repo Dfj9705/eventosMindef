@@ -26,7 +26,7 @@
             @endforeach
         @else
             <div class="col-12 text-center">
-                <p class="lead text-muted">No hay eventos registrados</p>
+                <p class="lead text-muted">No hay ningun evento registrados</p>
             </div>
         @endif
 
