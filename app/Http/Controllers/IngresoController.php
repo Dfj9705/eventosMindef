@@ -44,7 +44,8 @@ class IngresoController extends Controller
                     if($ingreso){
                         $respuesta = [
                             'mensaje' => "Token validado",
-                            'codigo' => 1
+                            'codigo' => 1,
+                            'usuario' => $usuario
                         ];
                        
                     }else{
@@ -58,7 +59,8 @@ class IngresoController extends Controller
                 }else{
                     $respuesta = [
                         'mensaje' => "Token ingresado anteriormente",
-                        'codigo' => 2
+                        'codigo' => 2,
+                        'usuario' => $usuario
                     ];
                 }
 

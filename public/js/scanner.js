@@ -32893,13 +32893,15 @@ function _asyncToGenerator(fn) {
 
 var onScanSuccess = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(decodedText, decodedResult) {
-    var csrf, url, body, headers, config, response, data, mensaje, codigo, icon;
+    var csrf, url, body, headers, config, response, data, mensaje, codigo, usuario, icon, html;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
+            _context.prev = 0;
+
             if (!decodedText) {
-              _context.next = 17;
+              _context.next = 19;
               break;
             }
 
@@ -32916,33 +32918,37 @@ var onScanSuccess = /*#__PURE__*/function () {
               headers: headers,
               body: body
             };
-            _context.next = 11;
+            _context.next = 12;
             return fetch(url, config);
 
-          case 11:
+          case 12:
             response = _context.sent;
-            _context.next = 14;
+            _context.next = 15;
             return response.json();
 
-          case 14:
+          case 15:
             data = _context.sent;
-            mensaje = data.mensaje, codigo = data.codigo;
+            mensaje = data.mensaje, codigo = data.codigo, usuario = data.usuario;
+            console.log(usuario);
 
             if (mensaje) {
               icon = 'info';
+              html = '';
 
               if (codigo == 1) {
                 icon = 'success';
+                html = "\n              <p><span class='fw-bold'>NOMBRE: </span> ".concat(usuario.name, "</p>\n              <p><span class='fw-bold'>DPI: </span> ").concat(usuario.dpi, "</p>\n            ");
               } else if (codigo == 2) {
                 icon = 'warning';
+                html = "\n              <p><span class='fw-bold'>NOMBRE: </span> ".concat(usuario.name, "</p>\n              <p><span class='fw-bold'>DPI: </span> ").concat(usuario.dpi, "</p>\n            ");
               } else {
                 icon = 'error';
               }
 
               sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire({
                 icon: icon,
-                title: 'Código escaneado',
-                text: mensaje,
+                title: mensaje,
+                html: html,
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: "Entendido"
               }).then(function () {
@@ -32950,12 +32956,21 @@ var onScanSuccess = /*#__PURE__*/function () {
               });
             }
 
-          case 17:
+          case 19:
+            _context.next = 24;
+            break;
+
+          case 21:
+            _context.prev = 21;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0);
+
+          case 24:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee);
+    }, _callee, null, [[0, 21]]);
   }));
 
   return function onScanSuccess(_x, _x2) {

@@ -8,55 +8,69 @@ import Swal from 'sweetalert2';
 
 const onScanSuccess = async (decodedText, decodedResult) => {
     // handle the scanned code as you like, for example:
-    if(decodedText){
-      html5QrcodeScanner.pause(true, false);
-      const csrf = document.querySelector('[name=csrf-token]').content
-      // console.log(csrf)
-      const url = `/ingreso`
-      const body = new FormData();
-      const headers = new Headers() 
-      headers.append('X-CSRF-TOKEN', csrf)
-      body.append('token', decodedText);
-      const config = {
-        method : 'POST',
-        headers,
-        body
-      }
-
-      const response = await fetch(url, config);
-      const data = await response.json()
-      
-      
-      const {mensaje, codigo} = data
-      
-      
-      if(mensaje){
-        let icon = 'info'
-
-        if(codigo == 1){
-          icon = 'success'
-        }else if(codigo == 2){
-          icon = 'warning'
-        }else{
-          icon = 'error'
+    try {
+      if(decodedText){
+        html5QrcodeScanner.pause(true, false);
+        const csrf = document.querySelector('[name=csrf-token]').content
+        // console.log(csrf)
+        const url = `/ingreso`
+        const body = new FormData();
+        const headers = new Headers() 
+        headers.append('X-CSRF-TOKEN', csrf)
+        body.append('token', decodedText);
+        const config = {
+          method : 'POST',
+          headers,
+          body
         }
-        Swal.fire({
-          icon : icon,
-          title : 'Código escaneado',
-          text : mensaje,
-          confirmButtonColor: '#3085d6',
-          confirmButtonText : "Entendido"
-        }).then(() => {
-          html5QrcodeScanner.resume()
-
+  
+        const response = await fetch(url, config);
+        const data = await response.json()
+        
+        
+        const {mensaje, codigo, usuario} = data
+        
+        console.log(usuario)
+        if(mensaje){
+          let icon = 'info'
+          let html = ''
+  
+          if(codigo == 1){
+            icon = 'success'
+            html = `
+              <p><span class='fw-bold'>NOMBRE: </span> ${usuario.name}</p>
+              <p><span class='fw-bold'>DPI: </span> ${usuario.dpi}</p>
+            `
+          }else if(codigo == 2){
+            icon = 'warning'
+            html = `
+              <p><span class='fw-bold'>NOMBRE: </span> ${usuario.name}</p>
+              <p><span class='fw-bold'>DPI: </span> ${usuario.dpi}</p>
+            `
+          }else{
+            icon = 'error'
+          }
+          Swal.fire({
+            icon : icon,
+            title : mensaje,
+            html : html,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText : "Entendido"
+          }).then(() => {
+            html5QrcodeScanner.resume()
+  
+          }
+  
+          )
         }
-
-        )
-      }
-      
-      
-
+      } 
+    } catch (error) {
+      console.log(error) 
     }
+   
+      
+
+
 }
   
   function onScanFailure(error) {
