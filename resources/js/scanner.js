@@ -27,21 +27,34 @@ const onScanSuccess = async (decodedText, decodedResult) => {
       const data = await response.json()
       
       
-      const {mensaje} = data
+      const {mensaje, codigo} = data
       
       
       if(mensaje){
+        let icon = 'info'
+
+        if(codigo == 1){
+          icon = 'success'
+        }else if(codigo == 2){
+          icon = 'warning'
+        }else{
+          icon = 'error'
+        }
         Swal.fire({
-          icon : 'success',
+          icon : icon,
           title : 'Código escaneado',
           text : mensaje,
           confirmButtonColor: '#3085d6',
           confirmButtonText : "Entendido"
-        })
+        }).then(() => {
+          html5QrcodeScanner.resume()
+
+        }
+
+        )
       }
       
       
-      html5QrcodeScanner.resume()
 
     }
 }

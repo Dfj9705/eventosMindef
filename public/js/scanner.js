@@ -32893,13 +32893,13 @@ function _asyncToGenerator(fn) {
 
 var onScanSuccess = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(decodedText, decodedResult) {
-    var csrf, url, body, headers, config, response, data, mensaje;
+    var csrf, url, body, headers, config, response, data, mensaje, codigo, icon;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             if (!decodedText) {
-              _context.next = 18;
+              _context.next = 17;
               break;
             }
 
@@ -32926,21 +32926,31 @@ var onScanSuccess = /*#__PURE__*/function () {
 
           case 14:
             data = _context.sent;
-            mensaje = data.mensaje;
+            mensaje = data.mensaje, codigo = data.codigo;
 
             if (mensaje) {
+              icon = 'info';
+
+              if (codigo == 1) {
+                icon = 'success';
+              } else if (codigo == 2) {
+                icon = 'warning';
+              } else {
+                icon = 'error';
+              }
+
               sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire({
-                icon: 'success',
+                icon: icon,
                 title: 'Código escaneado',
                 text: mensaje,
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: "Entendido"
+              }).then(function () {
+                html5QrcodeScanner.resume();
               });
             }
 
-            html5QrcodeScanner.resume();
-
-          case 18:
+          case 17:
           case "end":
             return _context.stop();
         }

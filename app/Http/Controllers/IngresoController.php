@@ -42,24 +42,41 @@ class IngresoController extends Controller
                     ]);
     
                     if($ingreso){
-                        $mensaje = "Token validado";
+                        $respuesta = [
+                            'mensaje' => "Token validado",
+                            'codigo' => 1
+                        ];
+                       
                     }else{
-                        $mensaje = "Token no ingresado";
+                        $respuesta = [
+                            'mensaje' => "No ingresado",
+                            'codigo' => 0
+                        ];
     
                     }
     
                 }else{
-                    $mensaje = "Token validado anteriormente";
+                    $respuesta = [
+                        'mensaje' => "Token ingresado anteriormente",
+                        'codigo' => 2
+                    ];
                 }
 
             }else{
-                $mensaje = 'No encontrado';
+                $respuesta = [
+                    'mensaje' => "No encontrado",
+                    'codigo' => 0
+                ];
             }
 
-            return response()->json(['mensaje' => $mensaje]);
         }else{
-            return response()->json(['mensaje' => "NO AUTORIZADO"]);
+            
+            $respuesta = [
+                'mensaje' => "No autorizado",
+                'codigo' => 0
+            ];
         }
+        return response()->json($respuesta);
     }
 
       /**
