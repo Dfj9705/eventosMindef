@@ -59,6 +59,9 @@
                                         <a class="dropdown-item" href="{{route('eventos.index')}}">
                                             Admin
                                         </a>
+                                        <a class="dropdown-item" href="{{route('eventos.validar')}}">
+                                            Verificar QR
+                                        </a>
 
                                     @endif
 

@@ -31,6 +31,7 @@ Route::get('/eventos/{evento}/edit', 'EventoController@edit' )->name('eventos.ed
 Route::put('/eventos/{evento}', 'EventoController@update' )->name('eventos.update');
 Route::delete('/eventos/{evento}', 'EventoController@destroy' )->name('eventos.destroy');
 
+Route::get('/validacion', 'EventoController@validar' )->name('eventos.validar');
 
 
 
@@ -41,6 +42,6 @@ Route::post('/registro/{evento}', 'RegistroController@store' )->name('eventos.re
 Route::delete('/registro/{registro}', 'RegistroController@destroy' )->name('registro.destroy');
 
 
-Route::get('/ingreso/{token}', 'IngresoController@ingreso')->name('ingreso');
+Route::post('/ingreso', 'IngresoController@ingreso')->name('ingreso');
 Route::get('/ingreso/estado/{evento}', 'IngresoController@show')->name('ingreso.estado');
 

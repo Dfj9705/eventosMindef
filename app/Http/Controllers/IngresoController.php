@@ -17,41 +17,48 @@ class IngresoController extends Controller
     }
      /**
      * Display a listing of the resource.
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function ingreso($token)
+    public function ingreso(Request  $request)
     {
         $usuario = Auth::user();
-
+        $token = $request['token'];
+        
         if($usuario->hasRole('Administrador')){
 
             $registro = Registro::select('id', 'user_id')->where('token', '=' , $token)->get();
-            $id = $registro[0]->id;
 
-            $ingresos = Ingreso::where('registro','=', $id)->get();
-
-            $usuario = User::find($registro[0] -> user_id);
-
-            if(!count($ingresos)>0){
-                $ingreso = Ingreso::create([
-                    'registro' => $id,
-                ]);
-
-                if($ingreso){
-                    $mensaje = "Token validado";
+            if(count($registro) > 0){
+                $id = $registro[0]->id;
+    
+                $ingresos = Ingreso::where('registro','=', $id)->get();
+    
+                $usuario = User::find($registro[0] -> user_id);
+    
+                if(!count($ingresos)>0){
+                    $ingreso = Ingreso::create([
+                        'registro' => $id,
+                    ]);
+    
+                    if($ingreso){
+                        $mensaje = "Token validado";
+                    }else{
+                        $mensaje = "Token no ingresado";
+    
+                    }
+    
                 }else{
-                    $mensaje = "Token no ingresado";
-
+                    $mensaje = "Token validado anteriormente";
                 }
 
             }else{
-                $mensaje = "Token validado anteriormente";
+                $mensaje = 'No encontrado';
             }
 
-            return view('ingreso.ingreso', compact('mensaje', 'usuario'));
+            return response()->json(['mensaje' => $mensaje]);
         }else{
-            return view('inicio');
+            return response()->json(['mensaje' => "NO AUTORIZADO"]);
         }
     }
 

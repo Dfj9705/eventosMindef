@@ -31,6 +31,22 @@ class EventoController extends Controller
         }
 
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function validar()
+    {
+        $usuario = Auth::user();
+        if($usuario->hasRole('Administrador')){
+
+            return view('eventos.validar');
+        }else{
+            return view('inicio');
+        }
+
+    }
 
     /**
      * Show the form for creating a new resource.
