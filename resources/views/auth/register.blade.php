@@ -30,7 +30,7 @@
                             <div class="col-md-12">
                                 <label for="email" class="">{{ __('E-Mail Address') }}</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
-                                <small> (Debe ingresar un correo válido Ej. usuario@gmail.com, usuario@outlook.es)</small>
+                                <p class="text-info"> (Debe ingresar un correo válido y existente Ej. usuario@gmail.com, usuario@outlook.es). <span class="font-weight-bold">En este recibirá un correo de confirmación</span></p>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
