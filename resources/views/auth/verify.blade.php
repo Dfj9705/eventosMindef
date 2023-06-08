@@ -9,6 +9,7 @@
 
                 <div class="card-body text-center">
                     <p class="h5">Revisa la bandeja de entrada de: <span class="font-weight-bold text-primary">{{ Auth::user()->email }}</span></p>
+                    <p class="font-weight-bold text-primary">Revise que el correo ingresado es correcto y existente</p>
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
                             {{ __('A fresh verification link has been sent to your email address.') }}
