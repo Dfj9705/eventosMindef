@@ -88,8 +88,8 @@
                     <div class="alert alert-info alert-dismissible">
                         Si tiene algún inconveniente en el registro o generación de código QR, favor de comunicarse a los números siguientes:
                         <ul>
-                            <li><span class="font-weight-bold">DIRECCIÓN DE RELACIONES CIVILES Y MILITARES:</span> 4497-4119, 4497-4118</li>
-                            <li><span class="font-weight-bold">COMANDO DE INFORMÁTICA Y TECNOLOGÍA:</span> 44974318 </li>
+                            <li><span class="font-weight-bold">DIRECCIÓN DE RELACIONES CIVILES Y MILITARES:</span> 2291-3150</li>
+                            <li><span class="font-weight-bold">COMANDO DE INFORMÁTICA Y TECNOLOGÍA:</span> 4497-4318 </li>
                         </ul>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
