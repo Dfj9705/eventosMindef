@@ -83,6 +83,20 @@
             </div>
         </nav>
         <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="alert alert-info alert-dismissible">
+                        Si tiene algún inconveniente en el registro o generación de código QR, favor de comunicarse a los números siguientes:
+                        <ul>
+                            <li><span class="font-weight-bold">DIRECCIÓN DE RELACIONES CIVILES Y MILITARES:</span> 4497-4119, 4497-4118</li>
+                            <li><span class="font-weight-bold">COMANDO DE INFORMÁTICA Y TECNOLOGÍA:</span> 44974318 </li>
+                        </ul>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
             @yield('banner')
             <div class="row">
                 <div class="py-2 mt-2 col-12">
