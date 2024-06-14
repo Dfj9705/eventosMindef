@@ -39,7 +39,7 @@ class EventoController extends Controller
     public function validar()
     {
         $usuario = Auth::user();
-        if($usuario->hasRole('Administrador')){
+        if($usuario->hasRole('Administrador') || $usuario->hasRole('Digitalizador')){
 
             return view('eventos.validar');
         }else{
