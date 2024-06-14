@@ -59,6 +59,8 @@
                                         <a class="dropdown-item" href="{{route('eventos.index')}}">
                                             Admin
                                         </a>
+                                    @endif
+                                    @if (Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Digitalizador'))
                                         <a class="dropdown-item" href="{{route('eventos.validar')}}">
                                             Verificar QR
                                         </a>

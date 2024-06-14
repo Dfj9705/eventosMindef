@@ -25,7 +25,7 @@ class IngresoController extends Controller
         $usuario = Auth::user();
         $token = $request['token'];
         
-        if($usuario->hasRole('Administrador')){
+        if($usuario->hasRole('Administrador') || $usuario->hasRole('Digitalizador')){
 
             $registro = Registro::select('id', 'user_id')->where('token', '=' , $token)->get();
 
