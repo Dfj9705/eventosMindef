@@ -120,7 +120,7 @@
     </div>
 
     @yield('scripts')
-    <script src="https://kit.fontawesome.com/aa8c0a31ec.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ae0feae7c7.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
