@@ -19,6 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('images/emdn.png') }}" type="image/x-icon">
+    @laravelPWA
 </head>
 <body>
     <div id="app">
