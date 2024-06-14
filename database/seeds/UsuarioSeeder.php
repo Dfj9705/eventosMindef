@@ -27,7 +27,7 @@ class UsuarioSeeder extends Seeder
             'name' => 'Administrador',
         ]);
 
-        $rol = Role::create([
+        $rol2 = Role::create([
             'name' => 'Digitalizador',
         ]);
 
